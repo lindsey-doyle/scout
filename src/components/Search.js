@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles.css';
+//import '../styles.css';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import Jumbotron from 'react-bootstrap/Jumbotron';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl'
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import CardDeck from 'react-bootstrap/CardDeck';
 
 
 const Search = () => {
@@ -23,12 +30,12 @@ const Search = () => {
     const DisplayCards = () => {
         // ..
         return (
-            <div>
+            <Row>
                 { data && 
                     results.map( result => {
                         return (
-                            <>
-                            <Card style={{ width: '18rem', margin: '10px' }}>
+                            <Col>
+                            <Card >
                                 {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                                 <Card.Header style={{ fontWeight: 'bold'  }}> {result.name} </Card.Header>
                                 <Card.Body>
@@ -49,13 +56,12 @@ const Search = () => {
                                 </Card.Body>
                             </Card>
                             
-                            
-                            </>
+                            </Col>
                         )
                     })
                     
                 }
-            </div> 
+            </Row> 
             
         )
 
@@ -74,32 +80,38 @@ const Search = () => {
         }
       
         return (
-          <form onSubmit={handleSubmit}>
-            <input
-              style={{margin: '5px', background: 'white', color: 'black'}}
+            <> 
+          <Form inline onSubmit={handleSubmit}>
+            <FormControl
+              className="mr-sm-2"
               type="text"
               value={queryTerm}
               onChange={event => setQueryTerm(event.target.value)}
               placeholder='ex. "Moab"'
               required
             />
-            
             <Button type="submit"> Search </Button>
-          </form>
+          </Form>
+          </>
         )
     };
 
     return (
-        <div>
+        <Container fluid>
+            <Jumbotron>
+                <h1>Recreation.gov API</h1>
+                <h2>Search for campgrounds</h2>
+                <p>
+                    Search for campgrounds
+                </p>
+                <p>
+                    <InputForm/>
+                </p>
+            </Jumbotron>
 
-            <h1>Recreation.gov API</h1>
-            <h2>Search for campgrounds</h2>
-
-            <InputForm/>
             <DisplayCards/>
 
-
-        </div>
+        </Container>
     );
 };
 
