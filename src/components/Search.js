@@ -28,20 +28,27 @@ const Search = () => {
                     results.map( result => {
                         return (
                             <>
-                            <Card style={{ width: '18rem' }}>
+                            <Card style={{ width: '18rem', margin: '10px' }}>
                                 {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-                                <Card.Header> {result.name} </Card.Header>
+                                <Card.Header style={{ fontWeight: 'bold'  }}> {result.name} </Card.Header>
                                 <Card.Body>
                                     <Card.Title>  </Card.Title>
                                     <Card.Text>
                                     
-                                    entity_id: {result.entity_id}
-                                    {/* {JSON.stringify(result)} */}
+                                    entity_type: {result.entity_type}  
+                                    <br/>
+                                    entity_id: {result.entity_id}  
+                                    <br/>
+                                    
+                                    {Object.keys(result).join(" \n ")}
 
+
+                                    {/* {JSON.stringify(result)} */}
                                     </Card.Text>
-                                    {/* <Button >Go somewhere</Button> */}
+                                    <Button> Book </Button>
                                 </Card.Body>
                             </Card>
+                            
                             
                             </>
                         )
@@ -83,7 +90,7 @@ const Search = () => {
     };
 
     return (
-        <div classname='container'>
+        <div>
 
             <h1>Recreation.gov API</h1>
             <h2>Search for campgrounds</h2>
