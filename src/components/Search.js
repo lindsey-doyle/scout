@@ -17,6 +17,7 @@ const Search = () => {
     const [errorMessage, setErrorMessage] = useState(null);
     const [cards, setCards] = useState([]);
     const [results, setResults] = useState([]);
+    const rec_link = "https://www.recreation.gov/camping/campgrounds/"
 
     useEffect(() => {
         if (data) {
@@ -30,16 +31,16 @@ const Search = () => {
     const DisplayCards = () => {
         // ..
         return (
-            <Row>
+            <Row xs={1} sm={2} md={3} lg={4} xl={5}>
                 { data && 
                     results.map( result => {
                         return (
                             <Col>
-                            <Card >
+                            <Card style={{ marginBottom: '1rem' }} >
                                 {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-                                <Card.Header style={{ fontWeight: 'bold'  }}> {result.name} </Card.Header>
+                                <Card.Header style={{ fontWeight: 'bold'  }}> {result.entity_type} </Card.Header>
                                 <Card.Body>
-                                    <Card.Title>  </Card.Title>
+                                    <Card.Title> {result.name} </Card.Title>
                                     <Card.Text>
                                     
                                     entity_type: {result.entity_type}  
@@ -47,12 +48,12 @@ const Search = () => {
                                     entity_id: {result.entity_id}  
                                     <br/>
                                     
-                                    {Object.keys(result).join(" \n ")}
+                                    {/* {Object.keys(result).join(" \n ")} */}
 
 
                                     {/* {JSON.stringify(result)} */}
                                     </Card.Text>
-                                    <Button> Book </Button>
+                                    <Button href={rec_link + result.entity_id} target="blank"> Book </Button>
                                 </Card.Body>
                             </Card>
                             
