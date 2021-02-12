@@ -9,7 +9,7 @@ function App() {
   return (
     <> 
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="#home" style={{fontWeight:'bolder'}}>scout</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
@@ -31,7 +31,7 @@ function App() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      
+
       <Search/>
    </>
   );

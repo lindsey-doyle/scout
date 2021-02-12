@@ -14,13 +14,14 @@ import CardDeck from 'react-bootstrap/CardDeck';
 
 const Search = () => {
     const [data, setData] = useState(null);
-    const [errorMessage, setErrorMessage] = useState(null);
+    const [noResultsTerm, setNoResultsTerm] = useState(false);
     const [cards, setCards] = useState([]);
     const [results, setResults] = useState([]);
     const rec_link = "https://www.recreation.gov/camping/campgrounds/"
+    const size = 12;
 
     useEffect(() => {
-        if (data) {
+        if (data && (data.total > 0)) {
             setResults(data.results);
         } else {
             setResults([]);
@@ -31,9 +32,14 @@ const Search = () => {
     const DisplayCards = () => {
         // ..
         return (
-            <Row xs={1} sm={2} md={3} lg={4} xl={5}>
-                { data && 
-                    results.map( result => {
+            <>
+                <p> Showing results for "{data.query}" </p>
+                {(data.total > size) ? 
+                    <p> 1-{size} of {data.total} </p> 
+                    : <p> 1-{data.total} of {data.total} </p>}
+                
+                <Row xs={1} sm={2} md={3} lg={4} xl={5}>
+                    { results.map( result => {
                         return (
                             <Col>
                             <Card style={{ marginBottom: '1rem' }} >
@@ -59,12 +65,11 @@ const Search = () => {
                             
                             </Col>
                         )
-                    })
-                    
-                }
-            </Row> 
-            
-        )
+                    })}
+                </Row> 
+           
+            </>
+        );
 
     };
 
@@ -74,9 +79,15 @@ const Search = () => {
         const handleSubmit = event => {
           event.preventDefault()
       
-          axios.get(`https://www.recreation.gov/api/search?inventory_type=camping&q=${queryTerm}`).then(resp => {
-            setData(resp.data);
-            setQueryTerm('')
+          axios.get(`https://www.recreation.gov/api/search?inventory_type=camping&size=${size}&q=${queryTerm}`).then(resp => {
+            if (resp.data && (resp.data.total > 0)) {
+                setNoResultsTerm('');
+                setData(resp.data);
+            } else {
+                setData(null);
+                setNoResultsTerm(queryTerm);
+            }
+            setQueryTerm('');
           })
         }
       
@@ -110,7 +121,8 @@ const Search = () => {
                 </p>
             </Jumbotron>
 
-            <DisplayCards/>
+            { data && <DisplayCards/> }
+            { noResultsTerm && <p> No matching results for "{noResultsTerm}" </p>}
 
         </Container>
     );
