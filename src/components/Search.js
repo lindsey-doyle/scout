@@ -105,8 +105,9 @@ const Search = () => {
               onChange={event => setQueryTerm(event.target.value)}
               placeholder='ex. "Moab"'
               required
+              style={{ marginBottom: '0.5rem' }}
             />
-            <Button type="submit"> Search </Button>
+            <Button type="submit" style={{ marginBottom: '0.5rem' }}> Search </Button>
           </Form>
           </>
         )
