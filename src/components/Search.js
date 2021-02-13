@@ -23,7 +23,10 @@ const Search = () => {
 
     useEffect(() => {
         if (data && (data.total > 0)) {
-            setResults(data.results);
+            let campgrounds = data.results.filter( result => {
+                return result.entity_type == 'campground';
+            });
+            setResults(campgrounds);
         } else {
             setResults([]);
         }
@@ -37,9 +40,9 @@ const Search = () => {
                 <p> 
                     Showing results for "{data.query}"
                     <br/>
-                    { (data.total > size) 
-                    ? <small> 1 - {size} of {data.total} results</small> 
-                    : <small> 1 - {data.total} of {data.total} </small> }
+                    { (results.length > size) 
+                    ? <small> 1 - {size} of {results.length} results</small> 
+                    : <small> 1 - {results.length} of {results.length} results</small> }
                 </p>
                 
                 <Row xs={1} sm={2} md={3} lg={4} xl={5}>
