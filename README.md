@@ -2,4 +2,4 @@
   
   
 
-Try it [here](https://main.d2waq26rtkfm4o.amplifyapp.com/).
+Try it [here](https://www.scoutsite.io/).
