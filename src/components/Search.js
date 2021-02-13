@@ -50,21 +50,17 @@ const Search = () => {
                         return (
                             <Col>
                             <Card style={{ marginBottom: '1rem' }} >
-                                {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-                                <Card.Header style={{ fontWeight: 'bold'  }}> {result.entity_type} </Card.Header>
+                            <Card.Img variant="top" src={result.preview_image_url} alt="holder.js/100px180" />
+                                {/* <Card.Header style={{ fontWeight: 'bold'  }}> {result.entity_type} </Card.Header> */}
                                 <Card.Body>
-                                    <Card.Title> {result.name} </Card.Title>
+                                    <Card.Title style={{marginBottom:'0.25rem', textTransform: 'capitalize'}}> {result.name.toLowerCase()} </Card.Title>
+                                    {/* <Card.Subtitle style={{color:'gray'}}> {result.parent_name} </Card.Subtitle> */}
                                     <Card.Text>
-                                    
-                                    entity_type: {result.entity_type}  
-                                    <br/>
-                                    entity_id: {result.entity_id}  
-                                    <br/>
-                                    
-                                    {/* {Object.keys(result).join(" \n ")} */}
 
+                                        <p style={{color:'gray'}}>{result.parent_name}</p>
 
-                                    {/* {JSON.stringify(result)} */}
+                                        {/* {result.campsites_count} campsites */}
+                                    
                                     </Card.Text>
                                     <Button href={rec_link + result.entity_id} target="blank"> Book </Button>
                                 </Card.Body>
