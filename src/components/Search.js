@@ -10,6 +10,7 @@ import FormControl from 'react-bootstrap/FormControl'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import CardDeck from 'react-bootstrap/CardDeck';
+import Alert from 'react-bootstrap/Alert';
 
 
 const Search = () => {
@@ -33,10 +34,13 @@ const Search = () => {
         // ..
         return (
             <>
-                <p> Showing results for "{data.query}" </p>
-                {(data.total > size) ? 
-                    <p> 1-{size} of {data.total} </p> 
-                    : <p> 1-{data.total} of {data.total} </p>}
+                <p> 
+                    Showing results for "{data.query}"
+                    <br/>
+                    { (data.total > size) 
+                    ? <small> 1 - {size} of {data.total} results</small> 
+                    : <small> 1 - {data.total} of {data.total} </small> }
+                </p>
                 
                 <Row xs={1} sm={2} md={3} lg={4} xl={5}>
                     { results.map( result => {
@@ -122,7 +126,7 @@ const Search = () => {
             </Jumbotron>
 
             { data && <DisplayCards/> }
-            { noResultsTerm && <p> No matching results for "{noResultsTerm}" </p>}
+            { noResultsTerm && <Alert variant='light'> No matching results for "{noResultsTerm}" </Alert>}
 
         </Container>
     );
