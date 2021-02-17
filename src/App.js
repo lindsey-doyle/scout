@@ -1,5 +1,4 @@
 import React from "react";
-//import './styles.css';
 import Search from './components/Search';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
