@@ -90,7 +90,7 @@ const Search = () => {
                 setData(null);
                 setNoResultsTerm(queryTerm);
             }
-            setQueryTerm('');
+            //setQueryTerm('');
           })
         }
       
