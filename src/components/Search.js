@@ -50,7 +50,7 @@ const Search = () => {
                         return (
                             <Col>
                             <Card style={{ marginBottom: '1rem' }} >
-                            <Card.Img variant="top" src={result.preview_image_url} alt="holder.js/100px180" />
+                            <Card.Img variant="top" src={result.preview_image_url ? result.preview_image_url : "https://via.placeholder.com/700x400"} alt="Preview Image" />
                                 {/* <Card.Header style={{ fontWeight: 'bold'  }}> {result.entity_type} </Card.Header> */}
                                 <Card.Body>
                                     <Card.Title style={{marginBottom:'0.25rem', textTransform: 'capitalize'}}> {result.name.toLowerCase()} </Card.Title>
